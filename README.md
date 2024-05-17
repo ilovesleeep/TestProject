@@ -24,7 +24,8 @@
 	git push origin a
 
 ## 合并到 main 分支
-如果从克隆项目到本地到准备合并 a 分支的这个过程中都没有人提交过代码到 main 分支，那么可以在 GitHub 上发起 Pull requests 请求将 a 分支的代码合并到 main 分支
+如果从克隆项目到本地到准备合并 a 分支的这个过程中都没有人提交过代码到 main 分支，
+那么可以在 GitHub 上发起 Pull requests 请求将 a 分支的代码合并到 main 分支
 
 否则:
  
