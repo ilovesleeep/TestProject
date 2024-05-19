@@ -1,6 +1,6 @@
 Srcs   := $(wildcard *.c)
 Objs   := $(patsubst %.c, %.o, $(Srcs))
-Out    := test
+Out    := Test
 CC     := gcc
 CFLAGS := -Wall -g
 

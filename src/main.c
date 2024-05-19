@@ -7,23 +7,34 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <error.h>
+#include <errno.h>
 
 #define RESSIZE 8192
 #define BUFSIZE 4096
 #define PORT 8880
 
-void serve_index_html(int client_socket) {
+void serve_html(int client_socket, const char* file_path) {
+  int fd = open(file_path, O_RDONLY);
+  if(fd == -1){
+    error(1, errno, "open %s", file_path);
+  }
+
   char res[RESSIZE] = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n";
-  int fd = open("../res/index.html", O_RDONLY);
   char buf[BUFSIZE];
   read(fd, buf, sizeof(buf));
   strcat(res, buf);
   write(client_socket, res, sizeof(res));
+
   close(fd);
   printf("Served index.html to client %d\n", client_socket);
 }
 
 int main(int argc, char *argv[]) {
+  if(argc != 2){
+    error(1, 0, "Usage: %s [path_to_html_file]\n", argv[0]);
+  }
+
   struct sockaddr_in server_addr, client_addr;
   socklen_t client_addr_size = sizeof(client_addr);
   int server_socket, client_socket;
@@ -46,7 +57,7 @@ int main(int argc, char *argv[]) {
                            &client_addr_size);
     printf("Accepted connection from client %d\n", client_socket);
 
-    serve_index_html(client_socket);
+    serve_html(client_socket, argv[1]);
     close(client_socket);
     printf("Closed connection with client %d\n", client_socket);
   }
