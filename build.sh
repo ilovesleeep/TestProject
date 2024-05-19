@@ -3,4 +3,4 @@
 cd src
 make
 rm *.o
-mv test ../bin/
+mv test ../../
