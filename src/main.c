@@ -27,7 +27,7 @@ void serve_html(int client_socket, const char* file_path) {
   write(client_socket, res, sizeof(res));
 
   close(fd);
-  printf("Served index.html to client %d\n", client_socket);
+  printf("Served %s to client %d\n", file_path, client_socket);
 }
 
 int main(int argc, char *argv[]) {
@@ -66,3 +66,4 @@ int main(int argc, char *argv[]) {
   printf("Server socket closed\n");
   return 0;
 }
+
