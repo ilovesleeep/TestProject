@@ -26,16 +26,19 @@ $ ssh -T git@github.com             # 测试
 # 在 Github 上 Fork 本项目，然后将 Fork 的项目 Clone 到本地
 $ git clone git@github.com:xxx/TestProject.git
 
+# 切换到 dev 分支
+$ git checkout dev
+
 # 写代码 ...
 
 # 提交代码变化到缓存区（-A 选项：包括修改、添加和删除）
 $ git add -A
 
-# 将缓存区内容提交到当前本地分支，并附上提交说明 "xxx"
+# 将缓存区内容提交到本地 dev 分支，并附上提交说明 "xxx"
 $ git commit -m "xxx"
 
-# 将代码提交到远程 main 分支
-$ git push origin main
+# 将代码提交到远程 dev 分支
+$ git push origin dev
 ```
 
 ## Pull requests
